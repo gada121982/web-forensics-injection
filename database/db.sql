@@ -60,7 +60,6 @@ create table phapchung.product
     name varchar(40) not null,
     des varchar(255) not null,
     price int not null,
-    amount int not null,
     constraint pk_product primary key(id)
 );
 create table phapchung.warehouse
@@ -71,7 +70,6 @@ create table phapchung.warehouse
     img varchar(255) not null,
     name varchar(40) not null,
     price int not null,
-    amount int not null,
     active boolean default false,
 
     constraint pk_warehouse primary key(id),
