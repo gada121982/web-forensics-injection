@@ -1,0 +1,196 @@
+.account-manage {
+  margin-top: 150px;
+  margin-bottom: 300px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+  color: rgb(70, 66, 66);
+}
+.manage-coin {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  height: 300px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.068);
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.2);
+}
+
+.total-coin {
+  display: flex;
+  position: relative;
+}
+
+.total-coin::after {
+  content: url("../img/coin.png");
+  position: absolute;
+  transform: scale(0.2);
+  top: -160px;
+  left: -30px;
+  border-radius: 50%;
+}
+
+.total-coin > h4 {
+  margin-right: 10px;
+}
+.add-coin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.add-coin > h4 {
+  margin-bottom: 10px;
+}
+
+.pricetag {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.pricetag label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.pricetag select {
+  width: 80%;
+  font-size: 1.1rem;
+}
+.seri {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.seri label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.seri input {
+  width: 80%;
+  height: 30px;
+  font-size: 1.1rem;
+  font-style: italic;
+  padding: 5px;
+}
+.pin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pin label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.pin input {
+  width: 80%;
+  height: 30px;
+  font-size: 1.1rem;
+  font-style: italic;
+  padding: 5px;
+}
+.submit-coin input {
+  margin-top: 10px;
+  height: 40px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: rgb(16, 157, 238);
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+/* profile */
+.profile {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.068);
+  box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.2);
+}
+
+.profile > h3:nth-child(1) {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.profile > form:nth-child(1) {
+  width: 50%;
+}
+
+#logout {
+  height: 40px;
+  width: 40%;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  background-color: rgb(16, 157, 238);
+  color: white;
+}
+
+.profile-name {
+  display: flex;
+  margin-bottom: 10px;
+}
+.profile-name h4:nth-child(2) {
+  margin-left: 5px;
+}
+
+.change-pwd {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.old-password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.old-password label {
+  margin-bottom: 5px;
+}
+.old-password input {
+  height: 20px;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.new-password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.new-password label {
+  margin-bottom: 5px;
+}
+.new-password input {
+  height: 20px;
+  font-size: 1rem;
+  padding: 10px;
+}
+.submit-pwd input {
+  height: 40px;
+  width: 50%;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: rgb(16, 157, 238);
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 550px) {
+  .account-manage {
+    grid-template-columns: auto;
+  }
+}

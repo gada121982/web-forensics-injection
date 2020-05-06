@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
+        <link rel="stylesheet" type="text/css" href="./css/user.css" />
+        <link rel="stylesheet" type="text/css" href="./css/manageuser.css" />
+        <title>Foregsis</title>
+      </head>
+      <body>
+        <div class="wrap">
+          <header>
+            <img src="./img/logo.png" alt="logo" />
+            <div class="header-right">
+              <div class="home">
+                <a href="/">Home</a>
+              </div>
+              <div class="user-info">
+                <div class="user">
+                    <a href="./user"> 
+                        <img class="avt-img" src="./img/avt.jpg" alt="avt" />
+                    </a>  
+                  </form>
+                </div>
+                <div class="show-coin">
+                  <h5>Coin</h5>
+                  <h5>100 <span>$</span></h5>
+                </div>
+              </div>
+            </div>
+          </header>
+          <main>
+            <h1 class="title">Manage account</h1>
+            <div class="account-manage">
+                <!-- profile -->
+                <div class="profile">
+                      <h3>Profile</h3>
+                      <!-- logout -->
+                      <form  action="logout" method="post">
+                          <input id="logout" type="submit" value="Logout">
+                      </form>
+                      <!-- namme -->
+                      <div class="profile-name">
+                          <h4>Username : </h4>
+                          <h4>gada121982</h4>
+                      </div>
+                      <!-- change password -->
+                      <form class="change-pwd" action="changepassword" method="post">
+                          
+                          <div class="old-password">
+                            <label for="oldpassword">Old Password</label>
+                            <input placeholder="Old password"type="text" name="oldpassword" id="oldpassword">
+                          </div>
+                          <div class="new-password">
+                            <label for="pin">New password</label>
+                            <input placeholder="New password"type="text" name="newpassword" id="newpassword">
+                          </div>
+                          <div class="submit-pwd">
+                            <input type="submit" value="Change password">
+                          </div>
+                      </form>
+                </div>
+                <!-- manage coin -->
+                  <div class="manage-coin">
+
+                    <div class="total-coin">
+                      
+                        <h4>Total coin :</h4>
+                        <span style="color: rgb(252, 137, 30);">1000 <span >$</span></span> 
+                    </div>
+                    <div class="add-coin">
+                         <!--title  -->
+                        <h4> Add coin</h4>
+                        <!-- form add coin -->
+                        <form action="./addcoin" method="post">
+                               <!-- price selection -->
+                          <div class="pricetag">
+                              <label for="price">Price</label>
+                              <select name="price" id="price">
+                                <option value="200">200</option>
+                                <option value="400">400</option>
+                                <option value="1000">1000</option>
+                              </select>
+                            </div>
+                            <!-- seri -->
+                            <div class="seri">
+                                <label for="seri">Seri</label>
+                                <input placeholder="8 charactor is require"type="text" name="seri" id="seri">
+                            </div>
+                            <!-- pin -->
+                            <div class="pin">
+                                <label for="pin">PIN</label>
+                                <input placeholder="8 charactor is require"type="text" name="seri" id="pin">
+                            </div>
+                            <!-- submit coin -->
+                            <div class="submit-coin">
+                                <input type="submit" value="Add coin">
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+              
+            </div>
+          </main>
+          <footer>
+            <div class="project-infor">
+              <div class="source-code">
+                <h4>Source Code</h4>
+                <div class="git">
+                  <img src="./img/giticon.png" alt="git-icon" />
+                  <a
+                    href="https://github.com/gada121982/web-forensics-injection"
+                    target="_blank"
+                    >https://github.com/gada121982/web-forensics-injection</a
+                  >
+                </div>
+              </div>
+              <div class="warn">
+                <img src="./img/warn.png" alt="" />
+                <h5>
+                  This website contains an error sql injection , Lest's find it
+                  :3
+                </h5>
+              </div>
+            </div>
+            <div class="infor-author">
+              <h4>Author information</h4>
+              <div class="link-infor">
+                <a href="https://www.facebook.com/vinhhai4199" target="_blank">
+                  Facebook
+                </a>
+                <a href="https://twitter.com/NguynVnhHi1" target="_blank">
+                  Twitter
+                </a>
+                <a href="https://www.linkedin.com/in/vinhhai" target="_blank">
+                  Linkin
+                </a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </body>
+    </html>
+  </body>
+</html>

@@ -20,8 +20,9 @@ header {
   display: flex;
   justify-content: space-evenly;
   background-color: rgb(38, 36, 39);
+  z-index: 99;
 }
-header img:nth-child(1) {
+header > img {
   width: 70px;
   height: 70px;
   margin: 5px 0px 5px 100px;
@@ -75,7 +76,7 @@ main {
 .product img:hover {
   border: 1px solid rgba(68, 65, 65, 0.5);
 }
-.product > h3 {
+.product .pricetag {
   color: orangered;
 }
 .product form {
