@@ -1,6 +1,6 @@
 /**
  * TIP
- * Convert connection to promise .
+ * Convert callback to promise .
  * All explain here
  * https://anonystick.com/blog-developer/mysql-nodejs-convert-callback-to-asyncawait-2020040361737963
  */
