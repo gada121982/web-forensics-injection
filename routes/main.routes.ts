@@ -3,6 +3,6 @@ import { main } from "../controllers/main.ctl";
 
 const app: Application = express();
 
-app.use("/", main);
+app.get("/", main);
 
 export default app;

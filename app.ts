@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 
 // routes
-import main from "./routes/main.routes";
+import indexRoute from "./routes/index.routes";
 
 // config
 const app: Application = express();
@@ -26,7 +26,9 @@ app.use(
 app.use(requestIp.mw());
 
 // routes
-app.use("/", main);
+app.use("/", indexRoute.main);
+app.use("/login", indexRoute.login);
+app.use("/signup", indexRoute.signup);
 
 app.listen(process.env.PORT || 3000, (): void => {
   console.log("app running on port ", process.env.PORT || 300);

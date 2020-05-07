@@ -1,3 +1,7 @@
 import main from "./main.routes";
+import login from "./login.routes";
+import signup from "./signup.routes";
 
-export { main };
+let index = { main, login, signup };
+
+export default index;
