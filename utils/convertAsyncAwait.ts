@@ -27,11 +27,7 @@ let poolGetConnection = async (pool: Pool): Promise<any> =>
  * @param q query string
  * @param params params for query string
  */
-let query = (
-  conn: PoolConnection,
-  q: string,
-  params?: Array<any>
-): Promise<any> =>
+let query = (conn: PoolConnection, q: any, params?: Array<any>): Promise<any> =>
   new Promise((resolve, reject) => {
     const handler = (error: any, result: any) => {
       if (error) {

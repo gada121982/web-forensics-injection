@@ -26,7 +26,7 @@
               </div>
               <div class="user-info">
                 <div class="user">
-                    <a href="./user"> 
+                    <a href="./user/<%= idUser %>"> 
                         <img class="avt-img" src="./img/avt.jpg" alt="avt" />
                     </a>  
                   </form>
@@ -52,34 +52,16 @@
               </div>
               <!-- content -->
               <div class="data-content">
-                    <div class="coin-ele">
-                        <div class="id-coin">
-                          <h4>abcdef12334</h4>
-                        </div>
-                        <!-- seri number-->
-                        <div class="seri-number">
-                          <label for="seri-number">Seri :</label>
-                          <h4 id="seri-number">12345678</h4>
-                        </div>
-                        <!-- PIN -->
-                        <div class="pin-number">
-                          <label>PIN :</label>
-                          <div class="hide-p">Hidden</div>
-                        </div>
-                        <!--Active button-->
-                        <a  class="active-coin" href="/activepin/idpin">
-                          Active
-                        </a>
-                    </div>
-
+                    <%
+                    coinListNotActive.forEach(function(coin){%>
                       <div class="coin-ele">
                         <div class="id-coin">
-                          <h4>abcdef12334</h4>
+                          <h4><%= coin.id %></h4>
                         </div>
                         <!-- seri number-->
                         <div class="seri-number">
                           <label for="seri-number">Seri :</label>
-                          <h4 id="seri-number">12345678</h4>
+                          <h4 id="seri-number"><%= coin.seri %></h4>
                         </div>
                         <!-- PIN -->
                         <div class="pin-number">
@@ -87,70 +69,13 @@
                           <div class="hide-p">Hidden</div>
                         </div>
                         <!--Active button-->
-                        <a  class="active-coin" href="/activepin/idpin">
+                        <a  class="active-coin" href="/activepin/<%= coin.id%>">
                           Active
                         </a>
                     </div>
-
-                    <div class="coin-ele">
-                      <div class="id-coin">
-                        <h4>abcdef12334</h4>
-                      </div>
-                      <!-- seri number-->
-                      <div class="seri-number">
-                        <label for="seri-number">Seri :</label>
-                        <h4 id="seri-number">12345678</h4>
-                      </div>
-                      <!-- PIN -->
-                      <div class="pin-number">
-                        <label>PIN :</label>
-                        <div class="hide-p">Hidden</div>
-                      </div>
-                      <!--Active button-->
-                      <a  class="active-coin" href="/activepin/idpin">
-                        Active
-                      </a>
-                  </div>
-
-                  <div class="coin-ele">
-                    <div class="id-coin">
-                      <h4>abcdef12334</h4>
-                    </div>
-                    <!-- seri number-->
-                    <div class="seri-number">
-                      <label for="seri-number">Seri :</label>
-                      <h4 id="seri-number">12345678</h4>
-                    </div>
-                    <!-- PIN -->
-                    <div class="pin-number">
-                      <label>PIN :</label>
-                      <div class="hide-p">Hidden</div>
-                    </div>
-                    <!--Active button-->
-                    <a  class="active-coin" href="/activepin/idpin">
-                      Active
-                    </a>
-                  </div>
-                  <div class="coin-ele">
-                    <div class="id-coin">
-                      <h4>abcdef12334</h4>
-                    </div>
-                    <!-- seri number-->
-                    <div class="seri-number">
-                      <label for="seri-number">Seri :</label>
-                      <h4 id="seri-number">12345678</h4>
-                    </div>
-                    <!-- PIN -->
-                    <div class="pin-number">
-                      <label>PIN :</label>
-                      <div class="hide-p">Hidden</div>
-                    </div>
-                    <!--Active button-->
-                    <a  class="active-coin" href="/activepin/idpin">
-                      Active
-                    </a>
-                  </div>
-
+                    <%})
+                    %>
+                   
               </div>
           </main>
           <footer>

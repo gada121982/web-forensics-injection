@@ -2,18 +2,27 @@ import { Request, Response, NextFunction } from "express";
 import pool from "../models/db-connection";
 import querySignup from "../models/signup.query";
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
-import { PoolConnection, Pool } from "mysql";
+
+let respondMessage: Object = {
+  addUserDone: Boolean,
+  errorUserExist: Boolean,
+};
+
 /**
  * GET /signup
  * render signup page
  */
 let getSignup = (req: Request, res: Response, next: NextFunction): void => {
-  res.render("signup");
+  respondMessage = {
+    addUserDone: false,
+    errorUserExist: false,
+  };
+  res.render("signup", respondMessage);
 };
 
 /**
  * POST /signup
- * save user account into database, and redirect to login page
+ * save user account into database, then redirect to login page
  *
  * table: phapchung.user
  * value: (name, pwd, level)
@@ -21,27 +30,42 @@ let getSignup = (req: Request, res: Response, next: NextFunction): void => {
 let postSignup = async (req: Request, res: Response, next: NextFunction) => {
   let { username, password } = req.body;
   let connection = await poolGetConnection(pool).catch(console.log);
+  let checkUserExist: any;
 
   //check if username exists.
-  let checkUserExist = await query(
-    connection,
-    querySignup.checkOverloadUserId,
-    [username]
-  ).catch(console.log);
+  try {
+    checkUserExist = await query(connection, querySignup.checkOverloadUserId, [
+      username,
+    ]);
+  } catch (e) {
+    if (e) {
+      res.send(e);
+    }
+  }
 
   // check if that username not exist => save this user
   if (checkUserExist[0].count === 0) {
     const fields = [[username, password, false]];
     try {
-      let saveuser = await query(connection, querySignup.saveUser, [fields]);
-      res.send(saveuser);
+      await query(connection, querySignup.saveUser, [fields]);
+
+      respondMessage = {
+        addUserDone: true,
+        errorUserExist: false,
+      };
+      res.render("signup", respondMessage);
     } catch (e) {
-      if (e) throw e;
+      if (e) res.send(e);
     }
   } else {
-    res.send("user exist");
+    respondMessage = {
+      addUserDone: false,
+      errorUserExist: true,
+    };
+    res.render("signup", respondMessage);
   }
 };
+
 let login = {
   getSignup,
   postSignup,

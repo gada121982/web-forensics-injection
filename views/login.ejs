@@ -25,7 +25,15 @@
       </header>
       <main>
         <div class="guide">
-          <h1>be a hacker, dudes !!!</1>
+          <%
+          if(respondMessage){%>
+            <h1><%= respondMessage.message %></1>
+          <%}
+          else{%>
+            <h1>be a hacker , dudes :3</1>
+          <%}
+          %>
+          
         </div>
         <form method="POST" action="/login">
             <div class="username">
