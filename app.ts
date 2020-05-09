@@ -5,6 +5,9 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import morgan from "morgan";
 
+//middlewares
+//import authAdmin from "./middlewares/authAdmin";
+
 // routes
 import indexRoute from "./routes/index.routes";
 import index from "./routes/index.routes";
@@ -30,7 +33,8 @@ app.use(requestIp.mw());
 app.use("/", indexRoute.main);
 app.use("/login", indexRoute.login);
 app.use("/signup", indexRoute.signup);
-app.use("/user", indexRoute.user);
+app.use("/user/admin", indexRoute.admin);
+app.use("/user/member", indexRoute.member);
 
 app.listen(process.env.PORT || 3000, (): void => {
   console.log("app running on port ", process.env.PORT || 300);

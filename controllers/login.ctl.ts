@@ -50,11 +50,17 @@ let postLogin = async (req: Request, res: Response, next: NextFunction) => {
               signed: true,
               expires: new Date(Date.now() + 2 * 3600000),
             })
-            .redirect("/user");
+            .redirect("/user/admin");
 
           return;
         }
-        res.send("this is not admin");
+        // render normal user
+        res
+          .cookie("access_token", dataUser[0].id, {
+            signed: true,
+            expires: new Date(Date.now() + 2 * 3600000),
+          })
+          .redirect("/user/member");
       } catch (e) {
         res.send(e);
       }
