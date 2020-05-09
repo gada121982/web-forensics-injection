@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/">
     <title>Document</title>
   </head>
   <body>
@@ -26,8 +27,8 @@
               </div>
               <div class="user-info">
                 <div class="user">
-                    <a href="./user"> 
-                        <img class="avt-img" src="./img/avt.jpg" alt="avt" />
+                    <a href="./manage"> 
+                        <img class="avt-img" src="./img/avt.gif" alt="avt" />
                     </a>  
                   </form>
                 </div>
@@ -43,6 +44,16 @@
             <div class="account-manage">
                 <!-- profile -->
                 <div class="profile">
+                    <%
+                      if(inform.status && inform.result === true){%>
+                        <h4 style="color: green; margin-bottom: 10px;"><%= inform.message%></h4>
+                      <%}
+                      if(inform.status && inform.result === false){%>
+                        <h4 style="color: red; margin-bottom: 10px;"><%= inform.message%></h4>
+                      <%}
+            
+                    %>
+                   
                       <h3>Profile</h3>
                       <!-- logout -->
                       <form  action="logout" method="post">
@@ -51,18 +62,18 @@
                       <!-- namme -->
                       <div class="profile-name">
                           <h4>Username : </h4>
-                          <h4>gada121982</h4>
+                          <h4><%= userDetail.name %></h4>
                       </div>
                       <!-- change password -->
-                      <form class="change-pwd" action="changepassword" method="post">
+                      <form class="change-pwd" action="./manage/changepassword" method="post">
                           
                           <div class="old-password">
                             <label for="oldpassword">Old Password</label>
-                            <input placeholder="Old password"type="text" name="oldpassword" id="oldpassword">
+                            <input placeholder="Old password"type="password" name="oldpassword" id="oldpassword">
                           </div>
                           <div class="new-password">
                             <label for="pin">New password</label>
-                            <input placeholder="New password"type="text" name="newpassword" id="newpassword">
+                            <input placeholder="New password"type="password" name="newpassword" id="newpassword">
                           </div>
                           <div class="submit-pwd">
                             <input type="submit" value="Change password">
@@ -75,13 +86,13 @@
                     <div class="total-coin">
                       
                         <h4>Total coin :</h4>
-                        <span style="color: rgb(252, 137, 30);">1000 <span >$</span></span> 
+                        <span style="color: rgb(252, 137, 30);"><%=userDetail.totalcoin %> <span >$</span></span> 
                     </div>
                     <div class="add-coin">
                          <!--title  -->
                         <h4> Add coin</h4>
                         <!-- form add coin -->
-                        <form action="./addcoin" method="post">
+                        <form action="./manage/addcoin" method="post">
                                <!-- price selection -->
                           <div class="pricetag">
                               <label for="price">Price</label>

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/">
     <title>Document</title>
   </head>
   <body>
@@ -25,14 +26,14 @@
               </div>
               <div class="user-info">
                 <div class="user">
-                    <a href="./user"> 
-                        <img class="avt-img" src="./img/avt.jpg" alt="avt" />
+                    <a href="./manage"> 
+                        <img class="avt-img" src="./img/avt.gif" alt="avt" />
                     </a>  
                   </form>
                 </div>
                 <div class="show-coin">
                   <h5>Coin</h5>
-                  <h5>100 <span>$</span></h5>
+                  <h5><%= userDetail.totalcoin %> <span>$</span></h5>
                 </div>
               </div>
             </div>

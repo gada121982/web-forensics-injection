@@ -35,7 +35,11 @@ let postLogin = async (req: Request, res: Response, next: NextFunction) => {
 
   try {
     checkvalid = await query(connection, lastestQuery);
-
+    // res.send({
+    //   lastestQuery,
+    //   checkvalid: checkvalid[0].checkvalid,
+    // });
+    // return;
     if (checkvalid[0].checkvalid !== 0) {
       try {
         dataUser = await query(connection, queryLogin.getUserDetail, [
