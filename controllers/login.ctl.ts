@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
 import queryLogin from "../models/login.query";
 import pool from "../models/dbConnection";
@@ -14,14 +14,14 @@ let findUser: String = `select count(*) as checkvalid from phapchung.user where 
 /**
  * GET /login
  */
-let getLogin = (req: Request, res: Response, next: NextFunction): void => {
+let getLogin = (req: Request, res: Response): void => {
   res.render("login", { respondMessage });
 };
 
 /**
  * POST /login
  */
-let postLogin = async (req: Request, res: Response, next: NextFunction) => {
+let postLogin = async (req: Request, res: Response) => {
   let userAccount = req.body;
   let connection = await poolGetConnection(pool).catch(console.log);
   let checkvalid;

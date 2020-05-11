@@ -37,6 +37,7 @@ app.use("/user/admin", authAdmin, indexRoute.admin);
 app.use("/user/member", authMember, indexRoute.member);
 app.use("/manage", authMember, indexRoute.usersetting);
 app.use("/coin", authAdmin, indexRoute.coin);
+app.use("/product", authMember, indexRoute.product);
 
 app.listen(process.env.PORT || 3000, (): void => {
   console.log("app running on port ", process.env.PORT || 300);

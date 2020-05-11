@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var checkOverloadUserId = "\n    SELECT COUNT(name)\n    AS count\n    FROM phapchung.user\n    WHERE name = ?\n";
-var saveUser = "\n    INSERT INTO phapchung.user (name, pwd, level)\n    VALUES ?;\n";
+var checkOverloadUserId = "\n    select count(name)\n    as count\n    from phapchung.user\n    where name = ?\n";
+var saveUser = "\n    insert into phapchung.user (name, pwd, level)\n    value ?;\n";
 var query = {
     saveUser: saveUser,
     checkOverloadUserId: checkOverloadUserId,

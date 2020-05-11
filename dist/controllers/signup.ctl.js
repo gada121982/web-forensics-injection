@@ -39,55 +39,81 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var db_connection_1 = __importDefault(require("../models/db-connection"));
+var dbConnection_1 = __importDefault(require("../models/dbConnection"));
 var signup_query_1 = __importDefault(require("../models/signup.query"));
 var convertAsyncAwait_1 = require("../utils/convertAsyncAwait");
+var respondMessage = {
+    addUserDone: Boolean,
+    errorUserExist: Boolean,
+};
 /**
  * GET /signup
  * render signup page
  */
 var getSignup = function (req, res, next) {
-    res.render("signup");
+    respondMessage = {
+        addUserDone: false,
+        errorUserExist: false,
+    };
+    res.render("signup", respondMessage);
 };
 /**
  * POST /signup
- * save user account into database, and redirect to login page
- *
- * table: phapchung.user
- * value: (name, pwd, level)
+ * save user account into database, then redirect to login page
  */
 var postSignup = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, username, password, connection, checkUserExist, fields, saveuser, e_1;
+    var _a, username, password, connection, checkUserExist, e_1, fields, e_2;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 _a = req.body, username = _a.username, password = _a.password;
-                return [4 /*yield*/, convertAsyncAwait_1.poolGetConnection(db_connection_1.default).catch(console.log)];
+                return [4 /*yield*/, convertAsyncAwait_1.poolGetConnection(dbConnection_1.default).catch(console.log)];
             case 1:
                 connection = _b.sent();
-                return [4 /*yield*/, convertAsyncAwait_1.query(connection, signup_query_1.default.checkOverloadUserId, [username]).catch(console.log)];
+                _b.label = 2;
             case 2:
-                checkUserExist = _b.sent();
-                if (!(checkUserExist[0].count === 0)) return [3 /*break*/, 7];
-                fields = [[username, password, false]];
-                _b.label = 3;
+                _b.trys.push([2, 4, , 5]);
+                return [4 /*yield*/, convertAsyncAwait_1.query(connection, signup_query_1.default.checkOverloadUserId, [
+                        username,
+                    ])];
             case 3:
-                _b.trys.push([3, 5, , 6]);
-                return [4 /*yield*/, convertAsyncAwait_1.query(connection, signup_query_1.default.saveUser, [fields])];
+                checkUserExist = _b.sent();
+                return [3 /*break*/, 5];
             case 4:
-                saveuser = _b.sent();
-                res.send(saveuser);
-                return [3 /*break*/, 6];
-            case 5:
                 e_1 = _b.sent();
-                if (e_1)
-                    throw e_1;
-                return [3 /*break*/, 6];
-            case 6: return [3 /*break*/, 8];
+                if (e_1) {
+                    res.send(e_1);
+                }
+                return [3 /*break*/, 5];
+            case 5:
+                if (!(checkUserExist[0].count === 0)) return [3 /*break*/, 10];
+                fields = [[username, password, false]];
+                _b.label = 6;
+            case 6:
+                _b.trys.push([6, 8, , 9]);
+                return [4 /*yield*/, convertAsyncAwait_1.query(connection, signup_query_1.default.saveUser, [fields])];
             case 7:
-                res.send("user exist");
-                _b.label = 8;
-            case 8: return [2 /*return*/];
+                _b.sent();
+                respondMessage = {
+                    addUserDone: true,
+                    errorUserExist: false,
+                };
+                res.render("signup", respondMessage);
+                return [3 /*break*/, 9];
+            case 8:
+                e_2 = _b.sent();
+                if (e_2)
+                    res.send(e_2);
+                return [3 /*break*/, 9];
+            case 9: return [3 /*break*/, 11];
+            case 10:
+                respondMessage = {
+                    addUserDone: false,
+                    errorUserExist: true,
+                };
+                res.render("signup", respondMessage);
+                _b.label = 11;
+            case 11: return [2 /*return*/];
         }
     });
 }); };

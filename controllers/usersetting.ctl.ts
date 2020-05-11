@@ -22,7 +22,7 @@ let getUserSetting = async (req: Request, res: Response) => {
   try {
     let result = await query(connection, userQuery.getUserDetail, [token]);
     let userDetail = result[0];
-    res.render("manageuser", {
+    res.render("manageUser", {
       id: token,
       userDetail,
       inform: {
@@ -61,7 +61,7 @@ let changepassword = async (req: Request, res: Response) => {
     if (userPassword === oldpassword) {
       try {
         await query(connection, userQuery.updatePassword, updateFor);
-        res.render("manageuser", {
+        res.render("manageUser", {
           id: token,
           userDetail,
           inform: {
@@ -76,7 +76,7 @@ let changepassword = async (req: Request, res: Response) => {
         return;
       }
     }
-    res.render("manageuser", {
+    res.render("manageUser", {
       id: token,
       userDetail,
       inform: {

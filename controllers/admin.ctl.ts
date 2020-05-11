@@ -1,5 +1,5 @@
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import pool from "../models/dbConnection";
 import queryCoin from "../models/coin.query";
 import userQuery from "../models/user.query";
@@ -8,7 +8,7 @@ import logQuery from "../models/log.query";
 /**
  * GET /user/admin
  */
-let getAdmin = async (req: Request, res: Response, next: NextFunction) => {
+let getAdmin = async (req: Request, res: Response) => {
   let connection;
   let coinListNotActive;
   let token = req.signedCookies.access_token;
@@ -35,7 +35,7 @@ let getAdmin = async (req: Request, res: Response, next: NextFunction) => {
 /**
  * GET /user/admin/abcxyz123
  */
-let getLog = async (req: Request, res: Response, next: NextFunction) => {
+let getLog = async (req: Request, res: Response) => {
   let connection;
   let token = req.signedCookies.access_token;
   let userDetail;
@@ -44,6 +44,7 @@ let getLog = async (req: Request, res: Response, next: NextFunction) => {
     connection = await poolGetConnection(pool).catch(console.log);
   } catch (e) {
     res.send("connect to dbs was failed");
+    return;
   }
 
   try {
@@ -51,6 +52,7 @@ let getLog = async (req: Request, res: Response, next: NextFunction) => {
     userDetail = result[0];
   } catch (error) {
     res.send({ error });
+    return;
   }
 
   try {
@@ -58,6 +60,7 @@ let getLog = async (req: Request, res: Response, next: NextFunction) => {
     res.render("adminLog", {
       allLog,
     });
+    return;
   } catch (error) {
     res.send({ error });
   }

@@ -27,12 +27,19 @@ let addCoin = `
   where id = ?
 `;
 
+let updateUserCoin = `
+  update phapchung.user
+  set totalcoin = totalcoin - ?
+  where id = ?
+`;
+
 let querylogin = {
   getUserDetail,
   checkMemberExist,
   getPassword,
   updatePassword,
   addCoin,
+  updateUserCoin,
 };
 
 export default querylogin;

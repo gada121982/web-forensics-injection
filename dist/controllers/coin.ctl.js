@@ -40,92 +40,65 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var convertAsyncAwait_1 = require("../utils/convertAsyncAwait");
-var login_query_1 = __importDefault(require("../models/login.query"));
 var dbConnection_1 = __importDefault(require("../models/dbConnection"));
-var respondMessage = {
-    message: "",
-};
-var findUser = "select count(*) as checkvalid from phapchung.user where name=";
-// select id,level,totalcoin from phapchung.user where name='a' or 1=1 ; --
-// a' or 1=1 ; --
+var log_query_1 = __importDefault(require("../models/log.query"));
+var coin_query_1 = __importDefault(require("../models/coin.query"));
 /**
- * GET /login
+ * /coin/active/:idcoin
  */
-var getLogin = function (req, res, next) {
-    res.render("login", { respondMessage: respondMessage });
-};
-/**
- * POST /login
- */
-var postLogin = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var userAccount, connection, checkvalid, dataUser, lastestQuery, level, e_1, e_2;
+var activeCoin = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var connection, idcoin, token, ip, coinDetail, e_1, result, e_2, feild, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                userAccount = req.body;
-                return [4 /*yield*/, convertAsyncAwait_1.poolGetConnection(dbConnection_1.default).catch(console.log)];
+                idcoin = req.params.idcoin;
+                token = req.signedCookies.access_token;
+                ip = req.clientIp;
+                _a.label = 1;
             case 1:
-                connection = _a.sent();
-                lastestQuery = findUser +
-                    ("'" + userAccount.username + "' and ") +
-                    ("pwd='" + userAccount.password + "';");
-                _a.label = 2;
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, convertAsyncAwait_1.poolGetConnection(dbConnection_1.default).catch(console.log)];
             case 2:
-                _a.trys.push([2, 10, , 11]);
-                return [4 /*yield*/, convertAsyncAwait_1.query(connection, lastestQuery)];
+                connection = _a.sent();
+                return [3 /*break*/, 4];
             case 3:
-                checkvalid = _a.sent();
-                if (!(checkvalid[0].checkvalid !== 0)) return [3 /*break*/, 8];
-                _a.label = 4;
+                e_1 = _a.sent();
+                res.send("connect to dbs was failed");
+                return [3 /*break*/, 4];
             case 4:
                 _a.trys.push([4, 6, , 7]);
-                return [4 /*yield*/, convertAsyncAwait_1.query(connection, login_query_1.default.getUserDetail, [
-                        userAccount.username,
-                    ])];
+                return [4 /*yield*/, convertAsyncAwait_1.query(connection, coin_query_1.default.getCoinById, [idcoin])];
             case 5:
-                dataUser = _a.sent();
-                level = dataUser[0].level;
-                if (level) {
-                    res
-                        .cookie("access_token", dataUser[0].id, {
-                        signed: true,
-                        expires: new Date(Date.now() + 2 * 3600000),
-                    })
-                        .redirect("/user/admin");
-                    return [2 /*return*/];
-                }
-                // render normal user
-                res
-                    .cookie("access_token", dataUser[0].id, {
-                    signed: true,
-                    expires: new Date(Date.now() + 2 * 3600000),
-                })
-                    .redirect("/user/member");
+                result = _a.sent();
+                coinDetail = result[0];
                 return [3 /*break*/, 7];
             case 6:
-                e_1 = _a.sent();
-                res.send("error in catch");
-                return [3 /*break*/, 7];
-            case 7: return [3 /*break*/, 9];
-            case 8:
-                respondMessage.message = "User account not valid, try again";
-                res.render("login", {
-                    respondMessage: respondMessage,
-                });
-                _a.label = 9;
-            case 9: return [3 /*break*/, 11];
-            case 10:
                 e_2 = _a.sent();
-                if (e_2) {
-                    res.send("in catch login");
-                }
+                res.send({ e: e_2 });
+                return [3 /*break*/, 7];
+            case 7:
+                _a.trys.push([7, 10, , 11]);
+                feild = [[ip, coinDetail.price, token, idcoin]];
+                return [4 /*yield*/, convertAsyncAwait_1.query(connection, log_query_1.default.insertLogGetCoin, [feild])];
+            case 8:
+                _a.sent();
+                return [4 /*yield*/, convertAsyncAwait_1.query(connection, coin_query_1.default.updateActiveCoin, [idcoin])];
+            case 9:
+                _a.sent();
+                res.render("detail-coin", {
+                    coinDetail: coinDetail,
+                    id: token,
+                });
+                return [3 /*break*/, 11];
+            case 10:
+                error_1 = _a.sent();
+                res.send(error_1);
                 return [3 /*break*/, 11];
             case 11: return [2 /*return*/];
         }
     });
 }); };
-var login = {
-    getLogin: getLogin,
-    postLogin: postLogin,
+var coin = {
+    activeCoin: activeCoin,
 };
-exports.default = login;
+exports.default = coin;

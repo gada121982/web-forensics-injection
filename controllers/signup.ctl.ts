@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import pool from "../models/dbConnection";
 import querySignup from "../models/signup.query";
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
@@ -12,7 +12,7 @@ let respondMessage: Object = {
  * GET /signup
  * render signup page
  */
-let getSignup = (req: Request, res: Response, next: NextFunction): void => {
+let getSignup = (req: Request, res: Response): void => {
   respondMessage = {
     addUserDone: false,
     errorUserExist: false,
@@ -24,7 +24,7 @@ let getSignup = (req: Request, res: Response, next: NextFunction): void => {
  * POST /signup
  * save user account into database, then redirect to login page
  */
-let postSignup = async (req: Request, res: Response, next: NextFunction) => {
+let postSignup = async (req: Request, res: Response) => {
   let { username, password } = req.body;
   let connection = await poolGetConnection(pool).catch(console.log);
   let checkUserExist: any;

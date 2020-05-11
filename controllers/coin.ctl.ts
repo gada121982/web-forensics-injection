@@ -31,7 +31,7 @@ let activeCoin = async (req: Request, res: Response) => {
     let feild = [[ip, coinDetail.price, token, idcoin]];
     await query(connection, logQuery.insertLogGetCoin, [feild]);
     await query(connection, queryCoin.updateActiveCoin, [idcoin]);
-    res.render("detail-coin", {
+    res.render("detailCoin", {
       coinDetail,
       id: token,
     });
