@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import pool from "../models/db-connection";
+import pool from "../models/dbConnection";
 import querySignup from "../models/signup.query";
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
 
@@ -23,9 +23,6 @@ let getSignup = (req: Request, res: Response, next: NextFunction): void => {
 /**
  * POST /signup
  * save user account into database, then redirect to login page
- *
- * table: phapchung.user
- * value: (name, pwd, level)
  */
 let postSignup = async (req: Request, res: Response, next: NextFunction) => {
   let { username, password } = req.body;

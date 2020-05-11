@@ -1,7 +1,7 @@
-import express, { Application, Request, Response } from "express";
+import express from "express";
 import { main } from "../controllers/main.ctl";
 
-const app: Application = express();
+const app: express.Application = express();
 
 app.get("/", main);
 

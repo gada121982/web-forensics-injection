@@ -20,6 +20,7 @@ app.set("views", "./views");
 app.use(morgan("combined"));
 app.use(cookieParser(process.env.keycookie));
 app.use(bodyParser.json());
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -35,6 +36,7 @@ app.use("/signup", indexRoute.signup);
 app.use("/user/admin", authAdmin, indexRoute.admin);
 app.use("/user/member", authMember, indexRoute.member);
 app.use("/manage", authMember, indexRoute.usersetting);
+app.use("/coin", authAdmin, indexRoute.coin);
 
 app.listen(process.env.PORT || 3000, (): void => {
   console.log("app running on port ", process.env.PORT || 300);

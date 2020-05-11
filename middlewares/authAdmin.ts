@@ -1,7 +1,7 @@
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
 import { Request, Response, NextFunction } from "express";
 import userQuery from "../models/user.query";
-import pool from "../models/db-connection";
+import pool from "../models/dbConnection";
 
 let authAdmin = async (req: Request, res: Response, next: NextFunction) => {
   let level;

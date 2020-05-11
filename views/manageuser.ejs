@@ -34,7 +34,7 @@
                 </div>
                 <div class="show-coin">
                   <h5>Coin</h5>
-                  <h5>100 <span>$</span></h5>
+                  <h5><%=userDetail.totalcoin %> <span>$</span></h5>
                 </div>
               </div>
             </div>
@@ -46,17 +46,17 @@
                 <div class="profile">
                     <%
                       if(inform.status && inform.result === true){%>
-                        <h4 style="color: green; margin-bottom: 10px;"><%= inform.message%></h4>
+                        <h4 style="color: green; margin-bottom: 10px;"><%= inform.messagePwd%></h4>
                       <%}
                       if(inform.status && inform.result === false){%>
-                        <h4 style="color: red; margin-bottom: 10px;"><%= inform.message%></h4>
+                        <h4 style="color: red; margin-bottom: 10px;"><%= inform.messagePwd%></h4>
                       <%}
             
                     %>
                    
                       <h3>Profile</h3>
                       <!-- logout -->
-                      <form  action="logout" method="post">
+                      <form  action="/manage/logout" method="post">
                           <input id="logout" type="submit" value="Logout">
                       </form>
                       <!-- namme -->
@@ -94,7 +94,12 @@
                         <!-- form add coin -->
                         <form action="./manage/addcoin" method="post">
                                <!-- price selection -->
-                          <div class="pricetag">
+                            <%
+                              if(inform.messageCoin){%>
+                                <h4><%= inform.messageCoin%></h4>
+                              <%}
+                            %>
+                            <div class="pricetag">
                               <label for="price">Price</label>
                               <select name="price" id="price">
                                 <option value="200">200</option>
@@ -110,7 +115,7 @@
                             <!-- pin -->
                             <div class="pin">
                                 <label for="pin">PIN</label>
-                                <input placeholder="8 charactor is require"type="text" name="seri" id="pin">
+                                <input placeholder="8 charactor is require"type="text" name="pin" id="pin">
                             </div>
                             <!-- submit coin -->
                             <div class="submit-coin">

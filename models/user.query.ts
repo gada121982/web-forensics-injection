@@ -21,11 +21,18 @@ let updatePassword = `
   where id = ?
 `;
 
+let addCoin = `
+  update phapchung.user
+  set totalcoin = totalcoin + ?
+  where id = ?
+`;
+
 let querylogin = {
   getUserDetail,
   checkMemberExist,
   getPassword,
   updatePassword,
+  addCoin,
 };
 
 export default querylogin;

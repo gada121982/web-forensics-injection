@@ -1,8 +1,8 @@
 import express from "express";
-import member from "../controllers/member.ctl";
+import coin from "../controllers/coin.ctl";
 
 const app: express.Application = express();
 
-app.get("/", member.getMember);
+app.get("/active/:idcoin", coin.activeCoin);
 
 export default app;

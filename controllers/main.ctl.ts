@@ -1,15 +1,13 @@
-import express, { Application, Request, Response } from "express";
-import pool from "../models/db-connection";
+import { Request, Response } from "express";
 
+/**
+ * GET /
+ */
 let main = (req: Request | any, res: Response): void => {
-  pool.getConnection((err, connection) => {
-    if (err) throw err;
-
-    connection.query("select * from phapchung.user", (err, data, field) => {
-      if (err) throw err;
-      console.log(data);
-    });
-  });
+  let token = req.signedCookies.access_token;
+  if (token) {
+    res.redirect("/user/member");
+  }
   res.render("index");
 };
 

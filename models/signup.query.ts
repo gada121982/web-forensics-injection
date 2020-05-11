@@ -1,12 +1,12 @@
 let checkOverloadUserId = `
-    SELECT COUNT(name)
-    AS count
-    FROM phapchung.user
-    WHERE name = ?
+    select count(name)
+    as count
+    from phapchung.user
+    where name = ?
 `;
 let saveUser = `
-    INSERT INTO phapchung.user (name, pwd, level)
-    VALUES ?;
+    insert into phapchung.user (name, pwd, level)
+    value ?;
 `;
 
 let query = {

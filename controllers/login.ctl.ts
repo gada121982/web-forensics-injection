@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
 import queryLogin from "../models/login.query";
-import pool from "../models/db-connection";
+import pool from "../models/dbConnection";
 
 let respondMessage = {
   message: "",
@@ -10,8 +10,6 @@ let respondMessage = {
 let findUser: String = `select count(*) as checkvalid from phapchung.user where name=`;
 // select id,level,totalcoin from phapchung.user where name='a' or 1=1 ; --
 // a' or 1=1 ; --
-// res.cookie()
-// admin admin123
 
 /**
  * GET /login
@@ -35,18 +33,13 @@ let postLogin = async (req: Request, res: Response, next: NextFunction) => {
 
   try {
     checkvalid = await query(connection, lastestQuery);
-    // res.send({
-    //   lastestQuery,
-    //   checkvalid: checkvalid[0].checkvalid,
-    // });
-    // return;
+
     if (checkvalid[0].checkvalid !== 0) {
       try {
         dataUser = await query(connection, queryLogin.getUserDetail, [
           userAccount.username,
         ]);
-        // format dataUser = [{level : 1}];
-        // check level of user whether has admin privilege
+
         let level = dataUser[0].level;
         if (level) {
           res
@@ -66,7 +59,7 @@ let postLogin = async (req: Request, res: Response, next: NextFunction) => {
           })
           .redirect("/user/member");
       } catch (e) {
-        res.send(e);
+        res.send("error in catch");
       }
     } else {
       respondMessage.message = "User account not valid, try again";
@@ -76,7 +69,7 @@ let postLogin = async (req: Request, res: Response, next: NextFunction) => {
     }
   } catch (e) {
     if (e) {
-      res.send(e);
+      res.send("in catch login");
     }
   }
 };

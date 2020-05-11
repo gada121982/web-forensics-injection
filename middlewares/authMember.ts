@@ -1,7 +1,7 @@
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
 import { Request, Response, NextFunction } from "express";
 import userQuery from "../models/user.query";
-import pool from "../models/db-connection";
+import pool from "../models/dbConnection";
 
 let authMember = async (req: Request, res: Response, next: NextFunction) => {
   let connection;
@@ -10,6 +10,7 @@ let authMember = async (req: Request, res: Response, next: NextFunction) => {
   if (!token) {
     res.redirect("/login");
   }
+
   // get connection
   try {
     connection = await poolGetConnection(pool).catch(console.log);

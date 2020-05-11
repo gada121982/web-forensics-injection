@@ -1,7 +1,7 @@
 import { poolGetConnection, query } from "../utils/convertAsyncAwait";
 import { Request, Response, NextFunction } from "express";
 import userQuery from "../models/user.query";
-import pool from "../models/db-connection";
+import pool from "../models/dbConnection";
 
 /**
  * GET /user/member
